@@ -20,13 +20,6 @@ const program = new Commander.Command(packageJson.name)
     projectPath = name;
   })
   .option(
-    "--blog, --nextra-blog",
-    `
-
-  Initialize as a Nextra Blog Starter.
-`
-  )
-  .option(
     "--use-npm",
     `
 
@@ -47,7 +40,7 @@ async function run(): Promise<void> {
       type: "text",
       name: "path",
       message: "What is your project named?",
-      initial: "nextra-app",
+      initial: "nextra-docs",
       validate: (name) => {
         const validation = validateNpmName(path.basename(path.resolve(name)));
         if (validation.valid) {
@@ -68,7 +61,7 @@ async function run(): Promise<void> {
     console.log(`  ${chalk.cyan(program.name())} ${chalk.green("<project-directory>")}`);
     console.log();
     console.log("For example:");
-    console.log(`  ${chalk.cyan(program.name())} ${chalk.green("my-nextra-app")}`);
+    console.log(`  ${chalk.cyan(program.name())} ${chalk.green("nextra-docs")}`);
     console.log();
     console.log(`Run ${chalk.cyan(`${program.name()} --help`)} to see all options.`);
     process.exit(1);
@@ -92,7 +85,6 @@ async function run(): Promise<void> {
   if (program.example === true) {
     console.error("Please provide an example name or url, otherwise remove the example option.");
     process.exit(1);
-    return;
   }
 
   const example = typeof program.example === "string" && program.example.trim();
@@ -100,7 +92,6 @@ async function run(): Promise<void> {
     await createApp({
       appPath: resolvedProjectPath,
       useNpm: !!program.useNpm,
-      blog: program.nextraBlog,
     });
   } catch (reason) {
     if (!(reason instanceof DownloadError)) {
@@ -122,7 +113,6 @@ async function run(): Promise<void> {
     await createApp({
       appPath: resolvedProjectPath,
       useNpm: !!program.useNpm,
-      blog: program.nextraBlog,
     });
   }
 }

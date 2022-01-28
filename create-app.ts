@@ -26,14 +26,11 @@ export class DownloadError extends Error {}
 export async function createApp({
   appPath,
   useNpm,
-  blog,
 }: {
   appPath: string;
   useNpm: boolean;
-  blog?: boolean;
 }): Promise<void> {
-  const template = blog ? "typescript" : "default";
-
+  const template = "default";
   const root = path.resolve(appPath);
 
   if (!(await isWriteable(path.dirname(root)))) {
@@ -95,12 +92,7 @@ export async function createApp({
    * Default devDependencies.
    */
   const devDependencies: string[] = [];
-  /**
-   * TypeScript projects will have type definitions and other devDependencies.
-   */
-  // if (blog) {
-  //   devDependencies.push("typescript", "@types/react", "@types/node");
-  // }
+
   /**
    * Install package.json dependencies if they exist.
    */
