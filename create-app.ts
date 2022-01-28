@@ -32,7 +32,6 @@ export async function createApp({
   useNpm: boolean;
   blog?: boolean;
 }): Promise<void> {
-  let repoInfo: RepoInfo | undefined;
   const template = blog ? "typescript" : "default";
 
   const root = path.resolve(appPath);
@@ -78,7 +77,6 @@ export async function createApp({
       dev: "next dev",
       build: "next build",
       start: "next start",
-      lint: "next lint",
     },
   };
   /**
@@ -96,7 +94,7 @@ export async function createApp({
   /**
    * Default devDependencies.
    */
-  const devDependencies = ["eslint", "eslint-config-next"];
+  const devDependencies: string[] = [];
   /**
    * TypeScript projects will have type definitions and other devDependencies.
    */
