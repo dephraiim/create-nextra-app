@@ -1,11 +1,11 @@
 {
   "name": "create-nextra-app",
-  "version": "0.0.0-development",
+  "version": "0.1.0",
   "keywords": [
     "react",
     "next",
     "next.js",
-    "nexta"
+    "nextra"
   ],
   "description": "Create Nextra powered Documentation apps with one command",
   "repository": {
